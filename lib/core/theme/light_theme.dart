@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/core/constant/color_constant.dart';
+import 'package:turnos_rotativos/core/constant/color_constant.dart';
 
 final lightTheme = ThemeData(
   useMaterial3: true,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/app/routes/router.dart';
-import 'package:flutter_base/core/controllers/bloc_providers/bloc_providers.dart';
-import 'package:flutter_base/core/controllers/providers/multi_providers.dart';
-import 'package:flutter_base/core/controllers/repository_providers/repository_providers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:turnos_rotativos/app/routes/router.dart';
+import 'package:turnos_rotativos/core/controllers/bloc_providers/bloc_providers.dart';
+import 'package:turnos_rotativos/core/controllers/providers/multi_providers.dart';
+import 'package:turnos_rotativos/core/controllers/repository_providers/repository_providers.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

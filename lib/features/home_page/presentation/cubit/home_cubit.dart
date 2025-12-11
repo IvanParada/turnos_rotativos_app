@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_base/core/enums/status_enum.dart';
-import 'package:flutter_base/features/home_page/data/repository/home_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:turnos_rotativos/core/enums/status_enum.dart';
+import 'package:turnos_rotativos/features/home_page/data/repository/home_repository.dart';
 
 part 'home_state.dart';
 
