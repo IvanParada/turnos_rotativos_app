@@ -1,0 +1,95 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turnos_rotativos/core/constant/assets_constant.dart';
+import 'package:turnos_rotativos/core/constant/color_constant.dart';
+import 'package:turnos_rotativos/core/enums/shift_enum.dart';
+import 'package:turnos_rotativos/core/utils/helper.dart';
+import 'package:turnos_rotativos/core/utils/shift_helper.dart';
+import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
+import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+
+class NextShiftType extends StatelessWidget {
+  const NextShiftType({
+    super.key,
+    required this.nextTypeShift,
+    required this.state,
+  });
+
+  final ShiftDayType nextTypeShift;
+  final HomeState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.textTertiary.withOpacity(.2),
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: nextTypeShift == ShiftDayType.work
+                        ? Colors.orange.withOpacity(.1)
+                        : Colors.green.withOpacity(.1),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: SvgPicture.asset(
+                    AppAssets.briefcase,
+                    color: nextTypeShift == ShiftDayType.work
+                        ? Colors.orange
+                        : Colors.green,
+                    width: 20,
+                  ),
+                ),
+                Hgap(10.0),
+                Expanded(
+                  child: Text(
+                    nextTypeShift == ShiftDayType.work
+                        ? 'Próximo Trabajo'
+                        : 'Próximo Descanso',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            Vgap(10.0),
+            Text(
+              nextTypeShift == ShiftDayType.work
+                  ? state.nextWorkDay != null
+                        ? formatDate(state.nextWorkDay!)
+                        : '--'
+                  : state.nextRestDay != null
+                  ? formatDate(state.nextRestDay!)
+                  : '--',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            Text(
+              nextTypeShift == ShiftDayType.work
+                  ? state.nextWorkDay != null
+                        ? getDaysLabel(state.nextWorkDay!)
+                        : '--'
+                  : state.nextRestDay != null
+                  ? getDaysLabel(state.nextRestDay!)
+                  : '--',
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: nextTypeShift == ShiftDayType.work
+                    ? Colors.orange
+                    : Colors.green,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
