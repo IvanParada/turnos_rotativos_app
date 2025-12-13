@@ -1,0 +1,1 @@
+enum ShiftType { predefined, custom }

@@ -1,39 +1,78 @@
 import 'package:flutter/material.dart';
 
 final class AppColors {
-  //-----Colores en alta-------
-  //** Colores corporativos */
-  static const Color primary = Color(0xff0A4479);
-  static const Color secondary = Color(0xff55A932);
-  static const Color tertiary = Color(0xffE5F2E0);
+  // =========================
+  // Neutros base (minimal)
+  // =========================
 
-  //escala de grises
-  static const Color white = Color(0xffFFFFFF);
-  static const Color black = Color(0xff1F1F29);
-  static const Color obscureGray = Color(0xff757B83);
-  static const Color mediumGray = Color(0xffA2AAB5);
-  static const Color lightGray = Color(0xffEEEEEE);
-  static const Color veryLightGray = Color(0xffF4F6F8);
+  /// Texto principal (negro suave)
+  static const Color textPrimary = Color(0xFF1C1C1E);
 
-  //** Colores fijos app */
-  static const Color topBarAndCards = Color(0xffFFFFFF);
-  static const Color backgroundAlta = Color(0xffFAF8FD);
-  static const Color iconsBackground = Color(0xffF4F6F8);
-  static const Color dividerLine = Color(0xffCFD3DA);
-  static const Color textTertiaryAndBorder = Color(0xffA2AAB5);
-  static const Color textSecondary = Color(0xff757B83);
-  static const Color textPrimary = Color(0xff1F1F29);
-  static const Color blueTint = Color(0xffDCE8F6);
+  /// Texto secundario
+  static const Color textSecondary = Color(0xFF5F6368);
 
-  //** Colores alerta */
-  static const alertPositive = Color(0xff5A9A3D);
-  static const alertNegative = Color(0xffD53943);
-  static const alertWarning = Color(0xffFFA540);
-  static const alertInformation = Color(0xff3EAEFF);
+  /// Texto terciario / placeholders
+  static const Color textTertiary = Color(0xFF9AA0A6);
 
-  //** Colores alerta background */
-  static const alertPositiveBackground = Color(0xffD6F1D7);
-  static const alertNegativeBackground = Color(0xffFFE4E2);
-  static const alertWarningBackground = Color(0xffF8F3C4);
-  static const alertInformationBackground = Color(0xffD5E8FF);
+  /// Blanco roto (fondos)
+  static const Color backgroundPrimary = Color(0xFFF7F8FA);
+
+  /// Superficies (cards, top bar)
+  static const Color surface = Color(0xFFFFFFFF);
+
+  /// Gris muy claro
+  static const Color backgroundSecondary = Color(0xFFF1F3F6);
+
+  /// Divisores y bordes
+  static const Color divider = Color(0xFFE0E3E7);
+
+  // =========================
+  // Color de acento (turnos)
+  // =========================
+
+  /// Acento principal (selección, botones)
+  static const Color accent = Color(0xFF3A4F7A);
+
+  /// Acento suave (background seleccionado)
+  static const Color accentSoft = Color(0xFFE4E9F2);
+
+  // =========================
+  // Estados / alertas
+  // =========================
+
+  static const Color success = Color(0xFF5E8B7E);
+  static const Color successBackground = Color(0xFFE6F0EC);
+
+  static const Color warning = Color(0xFFC2A14D);
+  static const Color warningBackground = Color(0xFFF5F1E3);
+
+  static const Color error = Color(0xFFB45A5A);
+  static const Color errorBackground = Color(0xFFF4E6E6);
+
+  static const Color info = Color(0xFF6B8CAF);
+  static const Color infoBackground = Color(0xFFE8EFF6);
+
+  // =========================
+  // Extras UI
+  // =========================
+
+  /// Fondo de iconos
+  static const Color iconBackground = Color(0xFFF0F2F5);
+
+  /// Sombra ligera
+  static const Color shadow = Color(0x1A000000);
+
+// =========================
+// Turnos
+// =========================
+
+/// Día de descanso
+static const Color restDay = Color(0xFF6F8F7A);
+static const Color restDayBackground = Color(0xFFE8F0EC);
+
+/// Día de trabajo
+static const Color workDay = Color(0xFFC47A3A);
+static const Color workDayBackground = Color(0xFFF4E8DD);
+
 }
+

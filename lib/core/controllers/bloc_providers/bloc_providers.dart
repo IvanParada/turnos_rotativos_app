@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/single_child_widget.dart';
+import 'package:turnos_rotativos/core/storage/shift_storage.dart';
+import 'package:turnos_rotativos/features/home/data/repository/home_repository.dart';
+import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/features/onboarding/presentation/cubit/first_step_cubit.dart';
+import 'package:turnos_rotativos/features/onboarding/presentation/cubit/onboarding/onboarding_cubit.dart';
 
 class BlocProviders extends StatelessWidget {
   const BlocProviders({super.key, required this.child});
@@ -9,37 +13,23 @@ class BlocProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final providers = <SingleChildWidget>[];
-
-  if (providers.isEmpty) {
-    return child;
-  }
     return MultiBlocProvider(
       providers: [
-        // BlocProvider(
-        //   create: (context) {
-        //     final loginCubit = LoginCubit(
-        //         userLoginRepository:
-        //             RepositoryProvider.of<UserLoginRepository>(context));
-
-        //     Provider.of<ApiClient>(context, listen: false).loginCubit =
-        //         loginCubit;
-        //     return loginCubit;
-        //   },
-        // ),
+        BlocProvider(
+          create: (context) => HomeCubit(
+            homeRepository: context.read<HomeRepository>(),
+          )..loadShift(),
+        ),
+        BlocProvider(
+          create: (context) => FirstStepCubit(
+            context.read<ShiftStorage>(),
+          )..restoreShift(),
+        ),
+        BlocProvider(
+          create: (_) => OnboardingCubit()..checkIfCompleted(),
+        ),
       ],
-      child: ChildWidget(child: child),
+      child: child,
     );
-  }
-}
-
-class ChildWidget extends StatelessWidget {
-  const ChildWidget({required this.child, super.key});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return child;
   }
 }
