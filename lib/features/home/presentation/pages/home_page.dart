@@ -8,6 +8,7 @@ import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/core/utils/shift_helper.dart';
 import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/features/home/presentation/widgets/balance_works_widget.dart';
 import 'package:turnos_rotativos/features/home/presentation/widgets/next_shift_type.dart';
 import 'package:turnos_rotativos/features/home/presentation/widgets/work_today_widget.dart';
 
@@ -45,11 +46,10 @@ class HomePage extends StatelessWidget {
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             return Column(
+              spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 WorkTodayWidget(state: state),
-                Vgap(10.0),
-
                 Row(
                   children: [
                     NextShiftType(
@@ -63,77 +63,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Vgap(10.0),
-
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AppColors.textTertiary.withOpacity(.2),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(AppAssets.trend),
-                              Hgap(10.0),
-                              Text('Este mes'),
-                            ],
-                          ),
-                          Text('Mostrar mes'),
-                        ],
-                      ),
-                      Vgap(10.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        spacing: 20,
-                        children: [
-                          Column(
-                            children: [
-                              Text(state.monthlyWorkedDays.toString()),
-                              Text('Trabajados'),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(state.monthlyRestDays.toString()),
-                              Text('Descansados'),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(state.monthlyTotalDays.toString()),
-                              Text('Total'),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Vgap(20.0),
-                      Text('Balance trabajo / descanso'),
-                      Vgap(10.0),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: LinearProgressIndicator(
-                              value: state.monthlyWorkPercentage,
-                              minHeight: 8,
-                              color: Colors.orange,
-                              backgroundColor: Colors.green,
-                            ),
-                          ),
-                        ],
-                      ),
-                      //TODO: CIRCLE INDICATOR
-                    ],
-                  ),
-                ),
+                BalanceWorksWidget(state: state),
               ],
             );
           },

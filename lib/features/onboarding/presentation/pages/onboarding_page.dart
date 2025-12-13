@@ -225,6 +225,7 @@ class _StepContainer extends StatelessWidget {
             padding: EdgeInsets.only(
               left: size.width * 0.1,
               right: size.width * 0.1,
+              bottom: size.width * 0.1
             ),
             child: Row(
               mainAxisAlignment: onBack != null
