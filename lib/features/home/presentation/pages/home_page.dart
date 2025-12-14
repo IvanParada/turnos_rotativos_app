@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turnos_rotativos/core/constant/assets_constant.dart';
-import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/enums/shift_enum.dart';
-import 'package:turnos_rotativos/core/utils/helper.dart';
-import 'package:turnos_rotativos/core/utils/shift_helper.dart';
-import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
 import 'package:turnos_rotativos/features/home/presentation/widgets/balance_works_widget.dart';
 import 'package:turnos_rotativos/features/home/presentation/widgets/next_shift_type.dart';
+import 'package:turnos_rotativos/features/home/presentation/widgets/pattern_widget.dart';
 import 'package:turnos_rotativos/features/home/presentation/widgets/work_today_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -31,10 +26,6 @@ class HomePage extends StatelessWidget {
               'Turnos App',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            Text(
-              'Gestión de Turnos',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
           ],
         ),
       ),
@@ -45,26 +36,29 @@ class HomePage extends StatelessWidget {
         ),
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
-            return Column(
-              spacing: 10,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                WorkTodayWidget(state: state),
-                Row(
-                  children: [
-                    NextShiftType(
-                      nextTypeShift: ShiftDayType.work,
-                      state: state,
-                    ),
-                    const SizedBox(width: 12),
-                    NextShiftType(
-                      nextTypeShift: ShiftDayType.rest,
-                      state: state,
-                    ),
-                  ],
-                ),
-                BalanceWorksWidget(state: state),
-              ],
+            return SingleChildScrollView(
+              child: Column(
+                spacing: 10,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  WorkTodayWidget(state: state),
+                  Row(
+                    children: [
+                      NextShiftType(
+                        nextTypeShift: ShiftDayType.work,
+                        state: state,
+                      ),
+                      const SizedBox(width: 12),
+                      NextShiftType(
+                        nextTypeShift: ShiftDayType.rest,
+                        state: state,
+                      ),
+                    ],
+                  ),
+                  BalanceWorksWidget(state: state),
+                  PatternWidget(state: state),
+                ],
+              ),
             );
           },
         ),
