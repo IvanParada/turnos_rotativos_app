@@ -40,10 +40,60 @@ class CalendarPage extends StatelessWidget {
               horizontal: size.width * .05,
               vertical: size.height * .01,
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                spacing: 10,
-                children: [
+            child: Column(
+              spacing: 10,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 2,
+                      color: AppColors.textTertiary.withOpacity(.2),
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: SvgPicture.asset(AppAssets.arrowLeft),
+                        onPressed: () {
+                          context.read<HomeCubit>().calculateMonthlyStats(
+                            date: DateTime(
+                              state.referenceMonth!.year,
+                              state.referenceMonth!.month - 1,
+                            ),
+                          );
+                        },
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            DateFormat.MMMM(
+                              'es',
+                            ).format(state.referenceMonth!).toUpperCase(),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            '${state.referenceMonth!.year}',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        icon: SvgPicture.asset(AppAssets.arrowRight),
+                        onPressed: () {
+                          context.read<HomeCubit>().calculateMonthlyStats(
+                            date: DateTime(
+                              state.referenceMonth!.year,
+                              state.referenceMonth!.month + 1,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                if (state.referenceMonth != null)
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
@@ -52,85 +102,33 @@ class CalendarPage extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: SvgPicture.asset(AppAssets.arrowLeft),
-                          onPressed: () {
-                            context.read<HomeCubit>().calculateMonthlyStats(
-                              date: DateTime(
-                                state.referenceMonth!.year,
-                                state.referenceMonth!.month - 1,
-                              ),
-                            );
-                          },
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              DateFormat.MMMM(
-                                'es',
-                              ).format(state.referenceMonth!).toUpperCase(),
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            Text(
-                              '${state.referenceMonth!.year}',
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                        IconButton(
-                          icon: SvgPicture.asset(AppAssets.arrowRight),
-                          onPressed: () {
-                            context.read<HomeCubit>().calculateMonthlyStats(
-                              date: DateTime(
-                                state.referenceMonth!.year,
-                                state.referenceMonth!.month + 1,
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                    child: MonthlyCalendarPage(
+                      referenceMonth: state.referenceMonth!,
+                      startDate: state.startDate!,
+                      workDays: state.workDays!,
+                      restDays: state.restDays!,
                     ),
                   ),
-                  if (state.referenceMonth != null)
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: AppColors.textTertiary.withOpacity(.2),
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: MonthlyCalendarPage(
-                        referenceMonth: state.referenceMonth!,
-                        startDate: state.startDate!,
-                        workDays: state.workDays!,
-                        restDays: state.restDays!,
-                      ),
+                IndicatorShiftTypeWidget(),
+                Vgap(15.0),
+                ExportCalendarWidget(size: size),
+            
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: size.height * .005,
+                      horizontal: size.width * 0.1,
                     ),
-                  IndicatorShiftTypeWidget(),
-                  Vgap(15.0),
-                  ExportCalendarWidget(size: size),
-              
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: size.height * .005,
-                        horizontal: size.width * 0.1,
+                    child: Text(
+                      'Descarga archivo .ics compatible con cualquier calendario.',
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: AppColors.textTertiary,
                       ),
-                      child: Text(
-                        'Descarga archivo .ics compatible con cualquier calendario.',
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: AppColors.textTertiary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },
