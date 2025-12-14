@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: size.width * .05,
-          vertical: size.width * .05,
+          vertical: size.height * .01,
         ),
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {

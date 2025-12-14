@@ -22,9 +22,8 @@ class App extends StatelessWidget {
                 data: MediaQuery.of(context)
                     .copyWith(textScaler: TextScaler.linear(1.0)),
                 child: MaterialApp.router(
-                  // theme: lightTheme,
                   themeMode: ThemeMode.light,
-                  debugShowCheckedModeBanner: true,
+                  debugShowCheckedModeBanner: false,
                   routerConfig: router,
                   locale: const Locale('es', 'ES'),
                   supportedLocales: const [
