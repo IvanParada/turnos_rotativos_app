@@ -57,7 +57,8 @@ class NextShiftType extends StatelessWidget {
                     nextTypeShift == ShiftDayType.work
                         ? 'Próximo Trabajo'
                         : 'Próximo Descanso',
-                    overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.visible,
+                    maxLines: 2,
                   ),
                 ),
               ],

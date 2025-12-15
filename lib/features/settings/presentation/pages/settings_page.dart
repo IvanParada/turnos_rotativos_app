@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/enums/shift_enum.dart';
-import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/features/settings/presentation/widgets/input_edit_date.dart';
 import 'package:turnos_rotativos/features/settings/presentation/widgets/save_button_widget.dart';
 import 'package:turnos_rotativos/features/settings/presentation/widgets/shift_input_edit_widget.dart';
 import 'package:turnos_rotativos/features/settings/presentation/widgets/shift_list_edit_widget.dart';
+import 'package:quickalert/quickalert.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -30,8 +31,17 @@ class SettingsPage extends StatelessWidget {
 
           return Scaffold(
             backgroundColor: Colors.white,
+
             appBar: AppBar(
-              title: const Text('Ajustes'),
+              centerTitle: true,
+              title: Column(
+                children: [
+                  Text(
+                    'Ajustes',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                ],
+              ),
               backgroundColor: Colors.white,
               foregroundColor: AppColors.textPrimary,
               surfaceTintColor: Colors.white,
@@ -97,49 +107,19 @@ class SettingsPage extends StatelessWidget {
                       restController: restController,
                     ),
 
-                    const SizedBox(height: 24),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: size.height * .03,
+                      ),
+                      child: Divider(),
+                    ),
                     const Text(
                       'Actualizar primer día de trabajo',
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 12),
 
-                    GestureDetector(
-                      onTap: () async {
-                        final picked = await showDatePicker(
-                          context: context,
-                          initialDate: state.editingStartDate ?? DateTime.now(),
-                          firstDate: DateTime.now().subtract(
-                            const Duration(days: 365),
-                          ),
-                          lastDate: DateTime.now().add(
-                            const Duration(days: 365 * 5),
-                          ),
-                        );
-
-                        if (picked != null) {
-                          cubit.updateEditingStartDate(picked);
-                        }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.calendar_today_outlined),
-                            const SizedBox(width: 12),
-                            Text(
-                              state.editingStartDate == null
-                                  ? 'Seleccionar nueva fecha'
-                                  : formatDateInput(state.editingStartDate!),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    InputEditDate(cubit: cubit, state: state),
 
                     const SizedBox(height: 32),
 
@@ -148,6 +128,18 @@ class SettingsPage extends StatelessWidget {
                       title: 'Guardar Cambios',
                       onTap: () async {
                         await cubit.confirmEditing();
+                        QuickAlert.show(
+                          context: context,
+                          type: QuickAlertType.success,
+                          confirmBtnColor: AppColors.textPrimary,
+                          confirmBtnText: 'Aceptar',
+                          title: '¡Actualizado Exitosamente!',
+                          text:
+                              'Podrás actualizar tus datos cuando seas necesario.',
+                          textColor: AppColors.textSecondary,
+                          borderRadius: 15,
+                          animType: QuickAlertAnimType.slideInUp,
+                        );
                       },
                     ),
                   ],

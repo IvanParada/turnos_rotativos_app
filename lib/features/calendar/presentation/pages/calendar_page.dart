@@ -4,9 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
-import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/calendar/presentation/pages/indicator_shift_type_widget.dart';
-import 'package:turnos_rotativos/features/calendar/presentation/widgets/export_calendar_widget.dart';
 import 'package:turnos_rotativos/features/calendar/presentation/widgets/monthly_calendar_page.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
 
@@ -110,24 +108,6 @@ class CalendarPage extends StatelessWidget {
                     ),
                   ),
                 IndicatorShiftTypeWidget(),
-                Vgap(15.0),
-                ExportCalendarWidget(size: size),
-
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: size.height * .005,
-                      horizontal: size.width * 0.1,
-                    ),
-                    child: Text(
-                      'Descarga archivo .ics compatible con cualquier calendario.',
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: AppColors.textTertiary,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
               ],
             ),
           );
