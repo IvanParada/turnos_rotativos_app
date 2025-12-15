@@ -7,6 +7,15 @@ import 'package:turnos_rotativos/features/home/data/repository/home_repository.d
 
 part 'home_state.dart';
 
+const predefinedShifts = [
+  {'work': 14, 'rest': 14},
+  {'work': 10, 'rest': 5},
+  {'work': 7, 'rest': 7},
+  {'work': 4, 'rest': 2},
+  {'work': 21, 'rest': 7},
+  {'work': 5, 'rest': 2},
+];
+
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepository homeRepository;
 
@@ -62,7 +71,6 @@ class HomeCubit extends Cubit<HomeState> {
     if (!state.hasShift) return;
 
     final ref = date ?? DateTime.now();
-
     final summary = calculateMonthlySummary(
       startDate: state.startDate!,
       workDays: state.workDays!,
@@ -80,5 +88,78 @@ class HomeCubit extends Cubit<HomeState> {
         monthlyWorkPercentage: summary.workPercentage,
       ),
     );
+  }
+
+  void startEditing() {
+    emit(
+      state.copyWith(
+        editingShiftType: ShiftType.predefined,
+        editingPredefinedIndex: _findPredefinedIndex(
+          state.workDays,
+          state.restDays,
+        ),
+        editingWorkDays: state.workDays,
+        editingRestDays: state.restDays,
+        editingStartDate: state.startDate,
+      ),
+    );
+  }
+
+  int? _findPredefinedIndex(int? work, int? rest) {
+    if (work == null || rest == null) return null;
+
+    for (int i = 0; i < predefinedShifts.length; i++) {
+      if (predefinedShifts[i]['work'] == work &&
+          predefinedShifts[i]['rest'] == rest) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  void updateEditingWorkDays(String value) {
+    emit(state.copyWith(editingWorkDays: int.tryParse(value)));
+  }
+
+  void updateEditingRestDays(String value) {
+    emit(state.copyWith(editingRestDays: int.tryParse(value)));
+  }
+
+  void updateEditingStartDate(DateTime date) {
+    emit(state.copyWith(editingStartDate: date));
+  }
+
+  void updateEditingShiftType(ShiftType type) {
+    emit(state.copyWith(editingShiftType: type, editingPredefinedIndex: null));
+  }
+
+  void selectPredefinedShift(int index) {
+    final shift = predefinedShifts[index];
+
+    emit(
+      state.copyWith(
+        editingShiftType: ShiftType.predefined,
+        editingPredefinedIndex: index,
+        editingWorkDays: shift['work'],
+        editingRestDays: shift['rest'],
+      ),
+    );
+  }
+
+  Future<void> confirmEditing() async {
+    if (state.editingWorkDays == null ||
+        state.editingRestDays == null ||
+        state.editingStartDate == null) {
+      return;
+    }
+
+    await homeRepository.saveShift(
+      workDays: state.editingWorkDays!,
+      restDays: state.editingRestDays!,
+      startDate: state.editingStartDate!,
+    );
+
+    emit(const HomeState());
+    await loadShift();
   }
 }

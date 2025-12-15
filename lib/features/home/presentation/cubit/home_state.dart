@@ -14,7 +14,18 @@ class HomeState extends Equatable {
   final double? monthlyWorkPercentage;
   final DateTime? referenceMonth;
 
+  final int? editingWorkDays;
+  final int? editingRestDays;
+  final DateTime? editingStartDate;
+  final ShiftType? editingShiftType;
+  final int? editingPredefinedIndex;
+
   const HomeState({
+    this.editingShiftType = ShiftType.predefined,
+    this.editingPredefinedIndex,
+    this.editingWorkDays,
+    this.editingRestDays,
+    this.editingStartDate,
     this.status,
     this.workDays,
     this.restDays,
@@ -43,6 +54,12 @@ class HomeState extends Equatable {
     int? monthlyTotalDays,
     double? monthlyWorkPercentage,
     DateTime? referenceMonth,
+
+    int? editingWorkDays,
+    int? editingRestDays,
+    DateTime? editingStartDate,
+    ShiftType? editingShiftType,
+    int? editingPredefinedIndex,
   }) {
     return HomeState(
       status: status ?? this.status,
@@ -58,6 +75,12 @@ class HomeState extends Equatable {
           monthlyWorkPercentage ?? this.monthlyWorkPercentage,
       monthlyWorkedDays: monthlyWorkedDays ?? this.monthlyWorkedDays,
       referenceMonth: referenceMonth ?? this.referenceMonth,
+      editingRestDays: editingRestDays ?? this.editingRestDays,
+      editingWorkDays: editingWorkDays ?? this.editingWorkDays,
+      editingStartDate: editingStartDate ?? this.editingStartDate,
+      editingPredefinedIndex:
+          editingPredefinedIndex ?? this.editingPredefinedIndex,
+      editingShiftType: editingShiftType ?? this.editingShiftType,
     );
   }
 
@@ -66,6 +89,14 @@ class HomeState extends Equatable {
 
   bool get hasShift =>
       workDays != null && restDays != null && startDate != null;
+
+  bool get isEditing =>
+      editingShiftType == ShiftType.predefined ||
+      editingShiftType == ShiftType.custom;
+
+  bool get isPredefinedEditing => editingShiftType == ShiftType.predefined;
+
+  bool get isCustomEditing => editingShiftType == ShiftType.custom;
 
   @override
   List<Object?> get props => [
@@ -81,5 +112,10 @@ class HomeState extends Equatable {
     monthlyWorkPercentage,
     monthlyWorkedDays,
     referenceMonth,
+    editingRestDays,
+    editingWorkDays,
+    editingStartDate,
+    editingPredefinedIndex,
+    editingShiftType,
   ];
 }

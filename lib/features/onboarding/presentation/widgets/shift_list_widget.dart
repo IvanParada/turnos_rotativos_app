@@ -33,6 +33,8 @@ class ShiftList extends StatelessWidget {
                   final bool isSelected =
                       state.selectedPredefinedIndex == index;
 
+                  final shift = predefinedShifts[index];
+
                   return GestureDetector(
                     onTap: isPredefined
                         ? () {
@@ -63,7 +65,7 @@ class ShiftList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Turno 14x14',
+                            'Turno ${shift['work']}x${shift['rest']}',
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(color: AppColors.textPrimary),
                           ),
@@ -79,7 +81,7 @@ class ShiftList extends StatelessWidget {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                '14',
+                                '${shift['work']}',
                                 style: TextStyle(
                                   color: AppColors.textSecondary,
                                 ),
@@ -100,7 +102,7 @@ class ShiftList extends StatelessWidget {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                '14',
+                                '${shift['rest']}',
                                 style: TextStyle(
                                   color: AppColors.textSecondary,
                                 ),

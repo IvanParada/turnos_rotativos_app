@@ -5,7 +5,7 @@ import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/features/calendar/presentation/pages/calendar_page.dart';
 import 'package:turnos_rotativos/features/home/presentation/pages/home_page.dart';
-import 'package:turnos_rotativos/features/settings/presentation/pages/settings.dart';
+import 'package:turnos_rotativos/features/settings/presentation/pages/settings_page.dart';
 
 class MainNavPage extends StatelessWidget {
   const MainNavPage({super.key});
@@ -44,6 +44,7 @@ class MainNavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .01),
       context,
       controller: _controller,
       screens: _screens(),

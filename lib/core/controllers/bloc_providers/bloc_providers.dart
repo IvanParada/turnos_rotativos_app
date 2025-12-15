@@ -16,18 +16,17 @@ class BlocProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => HomeCubit(
-            homeRepository: context.read<HomeRepository>(),
-          )..loadShift(),
+          create: (context) =>
+              HomeCubit(homeRepository: context.read<HomeRepository>())
+                ..loadShift()
+                ..startEditing(),
         ),
+
         BlocProvider(
-          create: (context) => FirstStepCubit(
-            context.read<ShiftStorage>(),
-          )..restoreShift(),
+          create: (context) =>
+              FirstStepCubit(context.read<ShiftStorage>())..restoreShift(),
         ),
-        BlocProvider(
-          create: (_) => OnboardingCubit()..checkIfCompleted(),
-        ),
+        BlocProvider(create: (_) => OnboardingCubit()..checkIfCompleted()),
       ],
       child: child,
     );

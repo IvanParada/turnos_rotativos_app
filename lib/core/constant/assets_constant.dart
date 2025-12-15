@@ -19,5 +19,6 @@ final class AppAssets {
  static const String moon = '$rutaiconos/moon.svg';
  static const String trend = '$rutaiconos/trend.svg';
  static const String download = '$rutaiconos/download.svg';
+ static const String save = '$rutaiconos/save.svg';
 
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/enums/shift_enum.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
 import 'package:turnos_rotativos/features/home/presentation/widgets/balance_works_widget.dart';
@@ -19,6 +20,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,
+        foregroundColor: AppColors.textPrimary,
+        surfaceTintColor: Colors.white,
         elevation: 0,
         title: Column(
           children: [
@@ -37,6 +40,7 @@ class HomePage extends StatelessWidget {
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             return SingleChildScrollView(
+              padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight + 16),
               child: Column(
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.stretch,

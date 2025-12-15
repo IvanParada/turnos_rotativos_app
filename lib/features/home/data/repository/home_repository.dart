@@ -9,4 +9,16 @@ class HomeRepository {
   Future<ShiftData?> getShiftData() {
     return homeDatasource.getShiftData();
   }
+
+  Future<void> saveShift({
+    required int workDays,
+    required int restDays,
+    required DateTime startDate,
+  }) {
+    return homeDatasource.saveShift(
+      workDays: workDays,
+      restDays: restDays,
+      startDate: startDate,
+    );
+  }
 }

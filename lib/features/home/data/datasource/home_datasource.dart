@@ -8,4 +8,16 @@ class HomeDatasource {
   Future<ShiftData?> getShiftData() {
     return shiftStorage.loadShift();
   }
+
+  Future<void> saveShift({
+    required int workDays,
+    required int restDays,
+    required DateTime startDate,
+  }) {
+    return shiftStorage.saveShift(
+      workDays: workDays,
+      restDays: restDays,
+      startDate: startDate,
+    );
+  }
 }

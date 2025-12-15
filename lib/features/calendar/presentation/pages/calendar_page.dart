@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,6 +21,8 @@ class CalendarPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,
+        foregroundColor: AppColors.textPrimary,
+        surfaceTintColor: Colors.white,
         elevation: 0,
         title: Column(
           children: [
@@ -112,7 +112,7 @@ class CalendarPage extends StatelessWidget {
                 IndicatorShiftTypeWidget(),
                 Vgap(15.0),
                 ExportCalendarWidget(size: size),
-            
+
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
