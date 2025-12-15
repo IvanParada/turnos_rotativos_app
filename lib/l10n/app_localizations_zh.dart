@@ -161,4 +161,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String days_count(Object count) {
     return '$count 天';
   }
+
+  @override
+  String get pattern => '模式';
 }

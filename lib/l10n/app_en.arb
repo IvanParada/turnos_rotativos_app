@@ -49,5 +49,6 @@
   "today_work": "Today you rest",
   "today_rest": "Today you work",
   "today": "Today",
-  "days_count": "{count} days"
+  "days_count": "{count} days",
+  "pattern": "Pattern"
 }

@@ -49,5 +49,7 @@
   "today_work": "आज आप विश्राम करते हैं",
   "today_rest": "आज आप काम करते हैं",
   "today": "आज",
-  "days_count": "{count} दिन"
+  "days_count": "{count} दिन",
+  "pattern": "पैटर्न"
+
 }

@@ -402,6 +402,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} days'**
   String days_count(Object count);
+
+  /// No description provided for @pattern.
+  ///
+  /// In en, this message translates to:
+  /// **'Pattern'**
+  String get pattern;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -161,4 +161,7 @@ class AppLocalizationsId extends AppLocalizations {
   String days_count(Object count) {
     return '$count hari';
   }
+
+  @override
+  String get pattern => 'Pola';
 }

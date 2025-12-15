@@ -161,4 +161,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String days_count(Object count) {
     return '$count días';
   }
+
+  @override
+  String get pattern => 'Turno';
 }

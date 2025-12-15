@@ -49,5 +49,7 @@
   "today_work": "今天休息",
   "today_rest": "今天工作",
   "today": "今天",
-  "days_count": "{count} 天"
+  "days_count": "{count} 天",
+  "pattern": "模式"
+
 }

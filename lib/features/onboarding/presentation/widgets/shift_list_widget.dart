@@ -4,6 +4,7 @@ import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/cubit/first_step_cubit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class ShiftList extends StatelessWidget {
   const ShiftList({super.key, required this.isPredefined, required this.state});
@@ -65,7 +66,7 @@ class ShiftList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Turno ${shift['work']}x${shift['rest']}',
+                            '${AppLocalizations.of(context)!.pattern} ${shift['work']}x${shift['rest']}',
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(color: AppColors.textPrimary),
                           ),

@@ -6,6 +6,7 @@ import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/features/calendar/presentation/pages/calendar_page.dart';
 import 'package:turnos_rotativos/features/home/presentation/pages/home_page.dart';
 import 'package:turnos_rotativos/features/settings/presentation/pages/settings_page.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class MainNavPage extends StatelessWidget {
   const MainNavPage({super.key});
@@ -18,23 +19,23 @@ class MainNavPage extends StatelessWidget {
     return const [HomePage(), CalendarPage(), SettingsPage()];
   }
 
-  List<PersistentBottomNavBarItem> _items() {
+  List<PersistentBottomNavBarItem> _items(BuildContext context) {
     return [
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(AppAssets.home),
-        title: 'Inicio',
+        title: AppLocalizations.of(context)!.home,
         activeColorPrimary: AppColors.textPrimary,
         inactiveColorPrimary: AppColors.textTertiary,
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(AppAssets.calendar),
-        title: 'Calendario',
+        title: AppLocalizations.of(context)!.calendar,
         activeColorPrimary: AppColors.textPrimary,
         inactiveColorPrimary: AppColors.textTertiary,
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(AppAssets.settings),
-        title: 'Ajustes',
+        title: AppLocalizations.of(context)!.settings,
         activeColorPrimary: AppColors.textPrimary,
         inactiveColorPrimary: AppColors.textTertiary,
       ),
@@ -48,7 +49,7 @@ class MainNavPage extends StatelessWidget {
       context,
       controller: _controller,
       screens: _screens(),
-      items: _items(),
+      items: _items(context),
       navBarStyle: NavBarStyle.style1,
     );
   }

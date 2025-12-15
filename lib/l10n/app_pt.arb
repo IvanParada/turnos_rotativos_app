@@ -49,5 +49,7 @@
   "today_work": "Hoje você descansa",
   "today_rest": "Hoje você trabalha",
   "today": "Hoje",
-  "days_count": "{count} dias"
+  "days_count": "{count} dias",
+  "pattern": "Padrão"
+
 }

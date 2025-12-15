@@ -49,5 +49,6 @@
     "today_work": "Hoy descansas",
     "today_rest": "Hoy trabajas",
     "today": "Hoy",
-    "days_count": "{count} días"
+    "days_count": "{count} días",
+    "pattern": "Turno"
 }

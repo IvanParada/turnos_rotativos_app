@@ -49,5 +49,7 @@
   "today_work": "Hari ini Anda beristirahat",
   "today_rest": "Hari ini Anda bekerja",
   "today": "Hari ini",
-  "days_count": "{count} hari"
+  "days_count": "{count} hari",
+  "pattern": "Pola"
+
 }
