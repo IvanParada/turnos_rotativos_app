@@ -4,6 +4,7 @@ import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class BalanceWorksWidget extends StatelessWidget {
   const BalanceWorksWidget({super.key, required this.state});
@@ -31,10 +32,9 @@ class BalanceWorksWidget extends StatelessWidget {
                 children: [
                   SvgPicture.asset(AppAssets.trend),
                   Hgap(10.0),
-                  Text('Este mes'),
+                  Text(AppLocalizations.of(context)!.this_month),
                 ],
               ),
-              Text('Mostrar mes'),
             ],
           ),
           Vgap(10.0),
@@ -45,25 +45,25 @@ class BalanceWorksWidget extends StatelessWidget {
               Column(
                 children: [
                   Text(state.monthlyWorkedDays.toString()),
-                  Text('Trabajados'),
+                  Text(AppLocalizations.of(context)!.worked),
                 ],
               ),
               Column(
                 children: [
                   Text(state.monthlyRestDays.toString()),
-                  Text('Descansados'),
+                  Text(AppLocalizations.of(context)!.rested),
                 ],
               ),
               Column(
                 children: [
                   Text(state.monthlyTotalDays.toString()),
-                  Text('Total'),
+                  Text(AppLocalizations.of(context)!.total),
                 ],
               ),
             ],
           ),
           Vgap(20.0),
-          Text('Balance trabajo / descanso'),
+          Text(AppLocalizations.of(context)!.balance_text),
           Vgap(10.0),
           Row(
             children: [
@@ -92,7 +92,7 @@ class BalanceWorksWidget extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                   ),
-                  Text('Trabajo'),
+                  Text(AppLocalizations.of(context)!.work),
                 ],
               ),
               Row(
@@ -106,7 +106,7 @@ class BalanceWorksWidget extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                   ),
-                  Text('Descanso'),
+                  Text(AppLocalizations.of(context)!.rest),
                 ],
               ),
             ],

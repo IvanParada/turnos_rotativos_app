@@ -7,6 +7,7 @@ import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/core/utils/shift_helper.dart';
 import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class NextShiftType extends StatelessWidget {
   const NextShiftType({
@@ -55,8 +56,8 @@ class NextShiftType extends StatelessWidget {
                 Expanded(
                   child: Text(
                     nextTypeShift == ShiftDayType.work
-                        ? 'Próximo Trabajo'
-                        : 'Próximo Descanso',
+                        ? AppLocalizations.of(context)!.next_work
+                        : AppLocalizations.of(context)!.next_rest,
                     overflow: TextOverflow.visible,
                     maxLines: 2,
                   ),
@@ -67,20 +68,20 @@ class NextShiftType extends StatelessWidget {
             Text(
               nextTypeShift == ShiftDayType.work
                   ? state.nextWorkDay != null
-                        ? formatDate(state.nextWorkDay!)
+                        ? formatDate(state.nextWorkDay!, context)
                         : '--'
                   : state.nextRestDay != null
-                  ? formatDate(state.nextRestDay!)
+                  ? formatDate(state.nextRestDay!, context)
                   : '--',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             Text(
               nextTypeShift == ShiftDayType.work
                   ? state.nextWorkDay != null
-                        ? getDaysLabel(state.nextWorkDay!)
+                        ? getDaysLabel(state.nextWorkDay!, context)
                         : '--'
                   : state.nextRestDay != null
-                  ? getDaysLabel(state.nextRestDay!)
+                  ? getDaysLabel(state.nextRestDay!, context)
                   : '--',
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: nextTypeShift == ShiftDayType.work

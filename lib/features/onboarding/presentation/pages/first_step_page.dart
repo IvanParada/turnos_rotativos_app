@@ -6,6 +6,7 @@ import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/cubit/first_step_cubit.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/widgets/shift_input_widget.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/widgets/shift_list_widget.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class FirstStepPage extends StatelessWidget {
   const FirstStepPage({super.key});
@@ -28,13 +29,13 @@ class FirstStepPage extends StatelessWidget {
                 children: [
                   Vgap(size.height * .01),
                   Text(
-                    'Bienvenido!',
+                    '${AppLocalizations.of(context)!.welcome}!',
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
     
                   Vgap(size.height * .01),
                   Text(
-                    'Gestiona tus turnos rotativos de forma simple y profesional',
+                    AppLocalizations.of(context)!.subtitle_step_1,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -48,7 +49,7 @@ class FirstStepPage extends StatelessWidget {
                     contentPadding: EdgeInsets.zero,
                     activeColor: AppColors.textPrimary,
                     title: Text(
-                      'Selecciona tu patrón de turnos',
+                      AppLocalizations.of(context)!.select_pattern_shift_predefined,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.textPrimary,
                       ),
@@ -66,7 +67,7 @@ class FirstStepPage extends StatelessWidget {
                     visualDensity: VisualDensity.compact,
                     contentPadding: EdgeInsets.zero,
                     title: Text(
-                      'Otro turno',
+                      AppLocalizations.of(context)!.select_pattern_shift_custom,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.textPrimary,
                       ),

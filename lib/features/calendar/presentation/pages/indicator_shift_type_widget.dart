@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class IndicatorShiftTypeWidget extends StatelessWidget {
   const IndicatorShiftTypeWidget({super.key});
@@ -29,7 +30,7 @@ class IndicatorShiftTypeWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
               ),
-              Text('Trabajo'),
+              Text(AppLocalizations.of(context)!.work),
             ],
           ),
 
@@ -44,7 +45,7 @@ class IndicatorShiftTypeWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
               ),
-              Text('Descanso'),
+              Text(AppLocalizations.of(context)!.rest),
             ],
           ),
         ],

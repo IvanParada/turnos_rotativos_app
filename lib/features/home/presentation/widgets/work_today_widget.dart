@@ -5,6 +5,7 @@ import 'package:turnos_rotativos/core/enums/shift_enum.dart';
 import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class WorkTodayWidget extends StatelessWidget {
   const WorkTodayWidget({
@@ -48,7 +49,7 @@ class WorkTodayWidget extends StatelessWidget {
                         ),
                         Hgap(size.width * .02),
                         Text(
-                          greetingByHour(),
+                          greetingByHour(context),
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -59,8 +60,8 @@ class WorkTodayWidget extends StatelessWidget {
                     Vgap(size.height * 0.01),
                     Text(
                       state.todayType == ShiftDayType.work
-                          ? 'Hoy trabajas'
-                          : 'Hoy descansas',
+                          ? AppLocalizations.of(context)!.today_work
+                          : AppLocalizations.of(context)!.today_rest,
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!
@@ -69,7 +70,7 @@ class WorkTodayWidget extends StatelessWidget {
                     Vgap(size.height * 0.01),
     
                     Text(
-                      formatDate(DateTime.now()),
+                      formatDate(DateTime.now(), context),
                       style: Theme.of(context).textTheme.bodyLarge!
                           .copyWith(color: Colors.white),
                     ),

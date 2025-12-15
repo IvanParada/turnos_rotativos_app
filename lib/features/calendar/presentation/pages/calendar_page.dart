@@ -7,6 +7,7 @@ import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/features/calendar/presentation/pages/indicator_shift_type_widget.dart';
 import 'package:turnos_rotativos/features/calendar/presentation/widgets/monthly_calendar_page.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class CalendarPage extends StatelessWidget {
   const CalendarPage({super.key});
@@ -25,7 +26,7 @@ class CalendarPage extends StatelessWidget {
         title: Column(
           children: [
             Text(
-              'Calendario',
+              AppLocalizations.of(context)!.calendar,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
@@ -67,7 +68,7 @@ class CalendarPage extends StatelessWidget {
                         children: [
                           Text(
                             DateFormat.MMMM(
-                              'es',
+                              Localizations.localeOf(context).toString(),
                             ).format(state.referenceMonth!).toUpperCase(),
                             style: Theme.of(context).textTheme.titleMedium,
                           ),

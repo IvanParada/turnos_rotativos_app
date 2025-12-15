@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:turnos_rotativos/core/enums/shift_enum.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 ShiftDayType getShiftDayType({
   required DateTime startDate,
@@ -73,7 +75,7 @@ DateTime getNextRestDay({
   }
 }
 
-String getDaysLabel(DateTime targetDate) {
+String getDaysLabel(DateTime targetDate, BuildContext context) {
   final today = DateTime.now();
   final todayOnly = DateTime(today.year, today.month, today.day);
   final targetOnly = DateTime(
@@ -83,16 +85,17 @@ String getDaysLabel(DateTime targetDate) {
   );
 
   final diffDays = targetOnly.difference(todayOnly).inDays;
+  final t = AppLocalizations.of(context)!;
 
   if (diffDays == 0) {
-    return 'Hoy';
+    return t.today;
   }
 
   if (diffDays == 1) {
-    return 'Mañana';
+    return t.tomorrow;
   }
 
-  return '$diffDays días';
+  return t.days_count(diffDays);
 }
 
 class MonthlyShiftSummary {

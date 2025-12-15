@@ -4,6 +4,7 @@ import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/cubit/first_step_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class SecondStepPage extends StatelessWidget {
   const SecondStepPage({super.key});
@@ -23,13 +24,13 @@ class SecondStepPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Vgap(size.height * .08),
-                  const Text(
-                    '¿Cuándo empieza tu ciclo?',
+                   Text(
+                  AppLocalizations.of(context)!.title_step_2,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),
                   Vgap(size.height * .02),
-                  const Text(
-                    'Selecciona el primer día de tu próximo turno de trabajo.',
+                   Text(
+                    AppLocalizations.of(context)!.subtitle_step_2,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
@@ -46,7 +47,7 @@ class SecondStepPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Primer día de trabajo'),
+                        Text(AppLocalizations.of(context)!.first_day_text),
                         Vgap(10.0),
                         GestureDetector(
                           onTap: () async {
@@ -57,8 +58,8 @@ class SecondStepPage extends StatelessWidget {
                               lastDate: DateTime.now().add(
                                 const Duration(days: 365 * 5),
                               ),
-                              cancelText: 'Cancelar',
-                              confirmText: 'Aceptar',
+                              cancelText: AppLocalizations.of(context)!.cancel,
+                              confirmText: AppLocalizations.of(context)!.agree,
                               builder: (context, child) {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
@@ -143,7 +144,7 @@ class SecondStepPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Patrón seleccionado:'),
+                        Text(AppLocalizations.of(context)!.pattern_selected),
                         Vgap(5.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +159,7 @@ class SecondStepPage extends StatelessWidget {
                                       .copyWith(color: AppColors.workDay),
                                 ),
                                 Text(
-                                  'Trabajo',
+                                  AppLocalizations.of(context)!.work,
                                   style: Theme.of(context).textTheme.bodyMedium!
                                       .copyWith(color: AppColors.workDay),
                                 ),
@@ -194,7 +195,7 @@ class SecondStepPage extends StatelessWidget {
                                       .copyWith(color: AppColors.restDay),
                                 ),
                                 Text(
-                                  'Descanso',
+                                  AppLocalizations.of(context)!.rest,
                                   style: Theme.of(context).textTheme.bodyMedium!
                                       .copyWith(color: AppColors.restDay),
                                 ),

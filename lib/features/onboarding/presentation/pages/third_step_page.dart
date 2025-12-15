@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/cubit/first_step_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class ThirdStepPage extends StatelessWidget {
   const ThirdStepPage({super.key});
@@ -24,13 +26,13 @@ class ThirdStepPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Vgap(size.height * .08),
-                  const Text(
-                    '¡Todo Listo!',
+                   Text(
+                    AppLocalizations.of(context)!.title_step_3,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),
                   Vgap(size.height * .02),
-                  const Text(
-                    'Revisa tu configuración antes de comenzar.',
+                   Text(
+                    AppLocalizations.of(context)!.subtitle_step_3,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
@@ -44,7 +46,7 @@ class ThirdStepPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Patrón de turnos'),
+                        Text(AppLocalizations.of(context)!.pattern_shift),
                         Text(
                           state.selectedPattern,
                           style: Theme.of(context).textTheme.displaySmall,
@@ -75,7 +77,7 @@ class ThirdStepPage extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 6),
                                 Text(
-                                  '${state.workDays.toString()} trabajo',
+                                  '${state.workDays.toString()} ${AppLocalizations.of(context)!.work}',
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                               ],
@@ -92,7 +94,7 @@ class ThirdStepPage extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 6),
                                 Text(
-                                  '${state.restDays.toString()} descanso',
+                                  '${state.restDays.toString()} ${AppLocalizations.of(context)!.rest}',
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                               ],
@@ -117,8 +119,8 @@ class ThirdStepPage extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Fecha de inicio',
+                             Text(
+                              AppLocalizations.of(context)!.init_date,
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey,
@@ -127,7 +129,7 @@ class ThirdStepPage extends StatelessWidget {
                             const SizedBox(height: 4),
                             Text(
                               state.startDate != null
-                                  ? _formatFullDate(state.startDate!)
+                                  ? _formatFullDate(state.startDate!, context)
                                   : '-',
                               style: const TextStyle(
                                 fontSize: 14,
@@ -150,36 +152,15 @@ class ThirdStepPage extends StatelessWidget {
     );
   }
 
-  /// jueves, 22 de diciembre de 2025
-  String _formatFullDate(DateTime date) {
-    const days = [
-      'lunes',
-      'martes',
-      'miércoles',
-      'jueves',
-      'viernes',
-      'sábado',
-      'domingo',
-    ];
 
-    const months = [
-      'enero',
-      'febrero',
-      'marzo',
-      'abril',
-      'mayo',
-      'junio',
-      'julio',
-      'agosto',
-      'septiembre',
-      'octubre',
-      'noviembre',
-      'diciembre',
-    ];
+String _formatFullDate(DateTime date, BuildContext context) {
+  final locale = Localizations.localeOf(context).toString();
 
-    final dayName = days[date.weekday - 1];
-    final monthName = months[date.month - 1];
+  final formattedDate = DateFormat(
+    "EEEE, d 'de' MMMM 'de' y",
+    locale,
+  ).format(date);
 
-    return '$dayName, ${date.day} de $monthName de ${date.year}';
-  }
+  return formattedDate;
+}
 }

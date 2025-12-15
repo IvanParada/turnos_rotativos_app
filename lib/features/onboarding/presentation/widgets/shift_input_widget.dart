@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/cubit/first_step_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class ShiftInput extends StatelessWidget {
   const ShiftInput({super.key, required this.isPredefined});
@@ -21,7 +22,7 @@ class ShiftInput extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 onChanged: context.read<FirstStepCubit>().setWorkDays,
                 decoration: InputDecoration(
-                  labelText: 'Trabajo',
+                  labelText: AppLocalizations.of(context)!.work,
                   labelStyle: Theme.of(context).textTheme.bodyLarge,
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -56,7 +57,7 @@ class ShiftInput extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 onChanged: context.read<FirstStepCubit>().setRestDays,
                 decoration: InputDecoration(
-                  labelText: 'Descanso',
+                  labelText: AppLocalizations.of(context)!.rest,
                   labelStyle: Theme.of(context).textTheme.bodyLarge,
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),

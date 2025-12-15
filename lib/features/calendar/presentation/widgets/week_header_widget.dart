@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class WeekHeaderWidget extends StatelessWidget {
-  final days = const ['D', 'L', 'M', 'X', 'J', 'V', 'S'];
-
   const WeekHeaderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).toString();
+
+    final weekDays = List.generate(7, (index) {
+      final date = DateTime(2024, 1, 7 + index);
+      return DateFormat.E(locale).format(date);
+    });
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: days
+      children: weekDays
           .map(
-            (d) => Expanded(
+            (day) => Expanded(
               child: Center(
                 child: Text(
-                  d,
+                  day.substring(0, 1).toUpperCase(),
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.grey,

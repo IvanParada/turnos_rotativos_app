@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class ShiftInputEditWidget extends StatelessWidget {
   const ShiftInputEditWidget({
@@ -31,7 +32,7 @@ class ShiftInputEditWidget extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 onChanged: cubit.updateEditingWorkDays,
                 decoration: InputDecoration(
-                  labelText: 'Trabajo',
+                  labelText: AppLocalizations.of(context)!.work,
                   labelStyle: Theme.of(context).textTheme.bodyLarge,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -63,7 +64,7 @@ class ShiftInputEditWidget extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 onChanged: cubit.updateEditingRestDays,
                 decoration: InputDecoration(
-                  labelText: 'Descanso',
+                  labelText: AppLocalizations.of(context)!.rest,
                   labelStyle: Theme.of(context).textTheme.bodyLarge,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),

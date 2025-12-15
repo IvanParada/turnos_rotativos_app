@@ -1,8 +1,7 @@
 {
     "@@locale": "es",
-    "appTitle": "Turnos App",
+    "appTitle": "App de Turnos",
     "welcome": "Bienvenido",
-    "login": "Iniciar sesión",
     "subtitle_step_1": "Gestiona tus turnos rotativos de forma simple y profesional.",
     "select_pattern_shift_predefined": "Selecciona tu patrón de turnos predefinido",
     "select_pattern_shift_custom": "Ingresa patrón de turnos manualmente",
@@ -37,7 +36,7 @@
     "your_pattern": "Tu Patrón",
     "days_work": "Días Trabajo",
     "days_rest": "Dias Descanso",
-    "cycleDays": "Ciclo de {days} días",
+    "cycle_days": "Ciclo de {days} días",
     "home": "Inicio",
     "calendar": "Calendario",
     "settings": "Ajustes",
@@ -46,5 +45,9 @@
     "new_date_text": "Seleccionar nueva fecha",
     "save_text": "Guardar Cambios",
     "updated_success_title_dialog": "¡Actualizado Exitosamente!",
-    "updated_success_subtitle_dialog": "Podrás actualizar tus datos cuando sea necesario."
+    "updated_success_subtitle_dialog": "Podrás actualizar tus datos cuando sea necesario.",
+    "today_work": "Hoy descansas",
+    "today_rest": "Hoy trabajas",
+    "today": "Hoy",
+    "days_count": "{count} días"
 }

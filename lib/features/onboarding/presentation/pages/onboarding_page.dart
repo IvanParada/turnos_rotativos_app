@@ -8,6 +8,7 @@ import 'package:turnos_rotativos/features/onboarding/presentation/pages/first_st
 import 'package:turnos_rotativos/features/onboarding/presentation/pages/second_step_page.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/pages/third_step_page.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/widgets/step_progress_bar_widget.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -52,33 +53,6 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  // Widget _buildStep(BuildContext context, int step) {
-  //   switch (step) {
-  //     case 0:
-  //       return _StepContainer(
-  //         child: const FirstStepPage(),
-  //         onNext: () => context.read<OnboardingCubit>().nextStep(),
-  //       );
-  //     case 1:
-  //       return _StepContainer(
-  //         child: const SecondStepPage(),
-  //         onNext: () => context.read<OnboardingCubit>().nextStep(),
-  //         onBack: () => context.read<OnboardingCubit>().previousStep(),
-  //       );
-  //     case 2:
-  //       return _StepContainer(
-  //         child: const ThirdStepPage(),
-  //         onNext: () async {
-  //           await context.read<FirstStepCubit>().persistShift();
-  //           await context.read<OnboardingCubit>().finishOnboarding();
-  //         },
-  //         onBack: () => context.read<OnboardingCubit>().previousStep(),
-  //       );
-  //     default:
-  //       return const SizedBox();
-  //   }
-  // }
-
   Widget _buildStep(BuildContext context, int step) {
     final firstStepState = context.watch<FirstStepCubit>().state;
 
@@ -115,91 +89,6 @@ class OnboardingPage extends StatelessWidget {
   }
 }
 
-// class _StepContainer extends StatelessWidget {
-//   final Widget child;
-//   final VoidCallback onNext;
-//   final VoidCallback? onBack;
-
-//   const _StepContainer({
-//     required this.child,
-//     required this.onNext,
-//     this.onBack,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final size = MediaQuery.of(context).size;
-
-//     return SafeArea(
-//       child: Column(
-//         children: [
-//           Expanded(child: child),
-//           Padding(
-//             padding: EdgeInsets.only(
-//               left: size.width * 0.1,
-//               right: size.width * 0.1,
-//             ),
-//             child: Row(
-//               mainAxisAlignment: onBack != null
-//                   ? MainAxisAlignment.spaceBetween
-//                   : MainAxisAlignment.end,
-//               children: [
-//                 if (onBack != null)
-//                   GestureDetector(
-//                     onTap: () => onBack!(),
-//                     child: Container(
-//                       decoration: BoxDecoration(
-//                         color: Colors.white,
-//                         borderRadius: BorderRadius.circular(15),
-//                         border: Border.all(
-//                           color: AppColors.textPrimary,
-//                           width: 2,
-//                         ),
-//                       ),
-//                       child: Padding(
-//                         padding: EdgeInsets.symmetric(
-//                           horizontal: 40,
-//                           vertical: 20,
-//                         ),
-//                         child: Text(
-//                           'Atrás',
-//                           style: Theme.of(context).textTheme.bodyMedium
-//                               ?.copyWith(color: AppColors.textPrimary),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 GestureDetector(
-//                   onTap: () => onNext(),
-//                   child: Container(
-//                     decoration: BoxDecoration(
-//                       color: AppColors.textPrimary,
-//                       borderRadius: BorderRadius.circular(15),
-//                     ),
-//                     child: Padding(
-//                       padding: EdgeInsets.symmetric(
-//                         horizontal: 40,
-//                         vertical: 20,
-//                       ),
-//                       child: Text(
-//                         'Siguiente',
-//                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-//                           color: AppColors.accentSoft,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-
 class _StepContainer extends StatelessWidget {
   final Widget child;
   final VoidCallback onNext;
@@ -225,7 +114,7 @@ class _StepContainer extends StatelessWidget {
             padding: EdgeInsets.only(
               left: size.width * 0.1,
               right: size.width * 0.1,
-              bottom: size.width * 0.1
+              bottom: size.width * 0.1,
             ),
             child: Row(
               mainAxisAlignment: onBack != null
@@ -250,10 +139,8 @@ class _StepContainer extends StatelessWidget {
                           vertical: 20,
                         ),
                         child: Text(
-                          'Atrás',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
+                          AppLocalizations.of(context)!.back,
+                          style: Theme.of(context).textTheme.bodyMedium
                               ?.copyWith(color: AppColors.textPrimary),
                         ),
                       ),
@@ -275,11 +162,10 @@ class _StepContainer extends StatelessWidget {
                         vertical: 20,
                       ),
                       child: Text(
-                        'Siguiente',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: AppColors.accentSoft),
+                        AppLocalizations.of(context)!.next,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppColors.accentSoft,
+                        ),
                       ),
                     ),
                   ),

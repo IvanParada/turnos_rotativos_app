@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class InputEditDate extends StatelessWidget {
   const InputEditDate({super.key, required this.cubit, required this.state});
@@ -18,6 +19,8 @@ class InputEditDate extends StatelessWidget {
           initialDate: state.editingStartDate ?? DateTime.now(),
           firstDate: DateTime.now().subtract(const Duration(days: 365)),
           lastDate: DateTime.now().add(const Duration(days: 365 * 5)),
+          cancelText: AppLocalizations.of(context)!.cancel,
+          confirmText: AppLocalizations.of(context)!.agree,
           builder: (context, child) {
             return Theme(
               data: Theme.of(context).copyWith(
@@ -61,7 +64,7 @@ class InputEditDate extends StatelessWidget {
             const SizedBox(width: 12),
             Text(
               state.editingStartDate == null
-                  ? 'Seleccionar nueva fecha'
+                  ? AppLocalizations.of(context)!.new_date_text
                   : formatDateInput(state.editingStartDate!),
             ),
           ],

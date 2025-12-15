@@ -9,6 +9,7 @@ import 'package:turnos_rotativos/features/settings/presentation/widgets/save_but
 import 'package:turnos_rotativos/features/settings/presentation/widgets/shift_input_edit_widget.dart';
 import 'package:turnos_rotativos/features/settings/presentation/widgets/shift_list_edit_widget.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -37,7 +38,7 @@ class SettingsPage extends StatelessWidget {
               title: Column(
                 children: [
                   Text(
-                    'Ajustes',
+                    AppLocalizations.of(context)!.settings,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ],
@@ -57,8 +58,8 @@ class SettingsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Actualizar el patrón de turnos',
+                     Text(
+                      AppLocalizations.of(context)!.update_pattern_text,
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 12),
@@ -70,7 +71,7 @@ class SettingsPage extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       activeColor: AppColors.textPrimary,
                       title: Text(
-                        'Selecciona tu patrón de turnos predefinido',
+                        AppLocalizations.of(context)!.select_pattern_shift_predefined,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.textPrimary,
                         ),
@@ -94,7 +95,7 @@ class SettingsPage extends StatelessWidget {
                       visualDensity: VisualDensity.compact,
                       contentPadding: EdgeInsets.zero,
                       title: Text(
-                        'Ingresar patrón de turnos manualmente',
+                        AppLocalizations.of(context)!.select_pattern_shift_custom,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.textPrimary,
                         ),
@@ -113,8 +114,8 @@ class SettingsPage extends StatelessWidget {
                       ),
                       child: Divider(),
                     ),
-                    const Text(
-                      'Actualizar primer día de trabajo',
+                     Text(
+                      AppLocalizations.of(context)!.update_first_work_day,
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 12),
@@ -125,17 +126,17 @@ class SettingsPage extends StatelessWidget {
 
                     SaveButtonWidget(
                       icon: AppAssets.save,
-                      title: 'Guardar Cambios',
+                      title: AppLocalizations.of(context)!.save_text,
                       onTap: () async {
                         await cubit.confirmEditing();
                         QuickAlert.show(
                           context: context,
                           type: QuickAlertType.success,
                           confirmBtnColor: AppColors.textPrimary,
-                          confirmBtnText: 'Aceptar',
-                          title: '¡Actualizado Exitosamente!',
+                          confirmBtnText: AppLocalizations.of(context)!.agree,
+                          title: AppLocalizations.of(context)!.updated_success_title_dialog,
                           text:
-                              'Podrás actualizar tus datos cuando seas necesario.',
+                              AppLocalizations.of(context)!.updated_success_subtitle_dialog,
                           textColor: AppColors.textSecondary,
                           borderRadius: 15,
                           animType: QuickAlertAnimType.slideInUp,

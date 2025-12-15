@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
+import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class PatternWidget extends StatelessWidget {
   const PatternWidget({super.key, required this.state});
@@ -18,7 +19,7 @@ class PatternWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tu patrón',
+            AppLocalizations.of(context)!.your_pattern,
             style: Theme.of(
               context,
             ).textTheme.bodyLarge!.copyWith(color: Colors.white),
@@ -35,7 +36,7 @@ class PatternWidget extends StatelessWidget {
                     ).textTheme.displayLarge!.copyWith(color: Colors.orange),
                   ),
                   Text(
-                    'Días Trabajo',
+                    AppLocalizations.of(context)!.days_work,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: AppColors.textTertiary,
                     ),
@@ -60,7 +61,7 @@ class PatternWidget extends StatelessWidget {
                     ).textTheme.displayLarge!.copyWith(color: Colors.green),
                   ),
                   Text(
-                    'Días Descanso',
+                    AppLocalizations.of(context)!.days_rest,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: AppColors.textTertiary,
                     ),
@@ -75,7 +76,9 @@ class PatternWidget extends StatelessWidget {
           ),
           Text(
             state.hasShift
-                ? 'Ciclo de ${state.workDays! + state.restDays!} días'
+                ? AppLocalizations.of(
+                    context,
+                  )!.cycle_days(state.workDays! + state.restDays!)
                 : 'Sin ciclo definido',
             style: Theme.of(
               context,
