@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
 import 'package:turnos_rotativos/core/enums/shift_enum.dart';
+import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
 import 'package:turnos_rotativos/features/settings/presentation/widgets/save_button_widget.dart';
 import 'package:turnos_rotativos/features/settings/presentation/widgets/shift_input_edit_widget.dart';
@@ -133,7 +134,7 @@ class SettingsPage extends StatelessWidget {
                             Text(
                               state.editingStartDate == null
                                   ? 'Seleccionar nueva fecha'
-                                  : _formatDate(state.editingStartDate!),
+                                  : formatDateInput(state.editingStartDate!),
                             ),
                           ],
                         ),
@@ -157,11 +158,5 @@ class SettingsPage extends StatelessWidget {
         },
       ),
     );
-  }
-
-  String _formatDate(DateTime date) {
-    return '${date.day.toString().padLeft(2, '0')}/'
-        '${date.month.toString().padLeft(2, '0')}/'
-        '${date.year}';
   }
 }

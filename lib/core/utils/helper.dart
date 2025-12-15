@@ -23,3 +23,9 @@ String formatDate(DateTime date) {
 String formatTime(DateTime date) {
   return DateFormat('HH:mm').format(date);
 }
+
+  String formatDateInput(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}/'
+        '${date.month.toString().padLeft(2, '0')}/'
+        '${date.year}';
+  }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
+import 'package:turnos_rotativos/core/utils/helper.dart';
 import 'package:turnos_rotativos/core/utils/utils_widgets.dart';
 import 'package:turnos_rotativos/features/onboarding/presentation/cubit/first_step_cubit.dart';
 
@@ -62,13 +63,13 @@ class SecondStepPage extends StatelessWidget {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
                                     colorScheme: ColorScheme.light(
-                                      surface: Colors.white,  
+                                      surface: Colors.white,
                                       primary: AppColors.textPrimary,
                                       onPrimary: Colors.white,
                                       onSurface: AppColors.textPrimary,
                                     ),
                                     datePickerTheme: DatePickerThemeData(
-                                      backgroundColor: Colors.white, 
+                                      backgroundColor: Colors.white,
                                       cancelButtonStyle: TextButton.styleFrom(
                                         foregroundColor:
                                             AppColors.textSecondary,
@@ -102,7 +103,7 @@ class SecondStepPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: Colors.grey.shade300),
-                              color: Colors.white
+                              color: Colors.white,
                             ),
                             child: Row(
                               children: [
@@ -111,7 +112,7 @@ class SecondStepPage extends StatelessWidget {
                                 Text(
                                   state.startDate == null
                                       ? 'DD/MM/YYYY'
-                                      : _formatDate(state.startDate!),
+                                      : formatDateInput(state.startDate!),
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: state.startDate == null
@@ -211,11 +212,5 @@ class SecondStepPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _formatDate(DateTime date) {
-    return '${date.day.toString().padLeft(2, '0')}/'
-        '${date.month.toString().padLeft(2, '0')}/'
-        '${date.year}';
   }
 }
