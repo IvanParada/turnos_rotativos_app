@@ -1,3 +1,9 @@
+    
+<p align="center">
+  <img src="assets/screenshots/logo.png" width="200" />
+</p>
+
+
 # Turnos App
 
 Aplicación móvil desarrollada en **Flutter** para llevar el control de **turnos rotativos de trabajo** de manera simple, clara y visual.
@@ -15,6 +21,7 @@ Está enfocada en personas que trabajan bajo esquemas como **10x5**, **14x14**, 
 - Visualización mediante calendario con colores
 - Persistencia de datos en **almacenamiento local**
 - Gestión de estado centralizada mediante **Cubit**
+- Soporte para múltiples idiomas mediante **l10n**
 
 ---
 
@@ -90,6 +97,15 @@ La aplicación utiliza **Cubit** como patrón de gestión de estado.
 - No se utiliza `setState` para la lógica principal de la app
 
 ---
+## 🌍 Internacionalización (l10n)
+
+La aplicación implementa **localización (l10n)** para soportar múltiples idiomas.
+
+- Textos centralizados mediante archivos de localización
+- Cambio de idioma según la configuración del dispositivo
+- Arquitectura preparada para escalar a nuevos idiomas
+
+---
 
 ## 💾 Persistencia de datos
 
@@ -105,6 +121,7 @@ La aplicación utiliza **Cubit** como patrón de gestión de estado.
 - Flutter
 - Dart
 - Cubit (Flutter Bloc)
+- l10n (Flutter localization)
 - Almacenamiento local
 
 ---
@@ -125,3 +142,19 @@ Este proyecto tiene como objetivo:
 - Aplicación pensada para uso personal
 - Proyecto sin backend
 - Enfocado en simplicidad y claridad de uso
+
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/Thumbnail.png" width="600" />
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/sc1.png" width="150" />
+  <img src="assets/screenshots/sc2.png" width="150" />
+  <img src="assets/screenshots/sc3.png" width="150" />
+  <img src="assets/screenshots/sc4.png" width="150" />
+</p>
+
+
