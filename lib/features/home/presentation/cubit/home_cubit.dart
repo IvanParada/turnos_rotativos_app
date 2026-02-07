@@ -90,6 +90,29 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
+  bool _isSameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
+  void _recalcChangedFlags() {
+    final patternChanged =
+        state.editingWorkDays != null &&
+        state.editingRestDays != null &&
+        (state.editingWorkDays != state.workDays ||
+            state.editingRestDays != state.restDays);
+
+    final firstWorkDayChanged =
+        state.editingStartDate != null &&
+        state.startDate != null &&
+        !_isSameDay(state.editingStartDate!, state.startDate!);
+
+    emit(
+      state.copyWith(
+        patternChanged: patternChanged,
+        firstWorkDayChanged: firstWorkDayChanged,
+      ),
+    );
+  }
+
   void startEditing() {
     emit(
       state.copyWith(
@@ -101,6 +124,9 @@ class HomeCubit extends Cubit<HomeState> {
         editingWorkDays: state.workDays,
         editingRestDays: state.restDays,
         editingStartDate: state.startDate,
+
+        patternChanged: false,
+        firstWorkDayChanged: false,
       ),
     );
   }
@@ -119,18 +145,29 @@ class HomeCubit extends Cubit<HomeState> {
 
   void updateEditingWorkDays(String value) {
     emit(state.copyWith(editingWorkDays: int.tryParse(value)));
+    _recalcChangedFlags();
   }
 
   void updateEditingRestDays(String value) {
     emit(state.copyWith(editingRestDays: int.tryParse(value)));
+    _recalcChangedFlags();
   }
 
   void updateEditingStartDate(DateTime date) {
     emit(state.copyWith(editingStartDate: date));
+    _recalcChangedFlags();
   }
 
   void updateEditingShiftType(ShiftType type) {
-    emit(state.copyWith(editingShiftType: type, editingPredefinedIndex: null));
+    emit(
+      state.copyWith(
+        editingShiftType: type,
+        editingPredefinedIndex: type == ShiftType.custom
+            ? null
+            : state.editingPredefinedIndex,
+      ),
+    );
+    _recalcChangedFlags();
   }
 
   void selectPredefinedShift(int index) {
@@ -144,9 +181,12 @@ class HomeCubit extends Cubit<HomeState> {
         editingRestDays: shift['rest'],
       ),
     );
+    _recalcChangedFlags();
   }
 
   Future<void> confirmEditing() async {
+    if (!state.canSave) return;
+
     if (state.editingWorkDays == null ||
         state.editingRestDays == null ||
         state.editingStartDate == null) {

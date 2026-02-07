@@ -7,11 +7,13 @@ class SaveButtonWidget extends StatelessWidget {
   const SaveButtonWidget({
     super.key,
     this.onTap,
+    this.isDisabled = false,
     required this.icon,
     required this.title,
   });
 
   final Function()? onTap;
+  final bool isDisabled;
   final String icon;
   final String title;
 
@@ -19,12 +21,12 @@ class SaveButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: onTap,
+      onTap: isDisabled ? null : onTap,
       child: Container(
         width: size.width * 0.8,
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppColors.textPrimary,
+          color: isDisabled ? Colors.grey : AppColors.textPrimary,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(

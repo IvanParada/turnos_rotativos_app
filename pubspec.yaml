@@ -1,5 +1,5 @@
 name: turnos_rotativos
-description: "turnos rotativos"
+description: "Turnos App - Una aplicación para gestionar turnos rotativos de trabajo."
 publish_to: 'none'
 version: 0.1.0
 

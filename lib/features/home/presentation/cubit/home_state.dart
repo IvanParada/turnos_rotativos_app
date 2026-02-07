@@ -20,6 +20,9 @@ class HomeState extends Equatable {
   final ShiftType? editingShiftType;
   final int? editingPredefinedIndex;
 
+  final bool patternChanged;
+  final bool firstWorkDayChanged;
+
   const HomeState({
     this.editingShiftType = ShiftType.predefined,
     this.editingPredefinedIndex,
@@ -38,6 +41,8 @@ class HomeState extends Equatable {
     this.monthlyWorkPercentage,
     this.monthlyWorkedDays,
     this.referenceMonth,
+    this.patternChanged = false,
+    this.firstWorkDayChanged = false,
   });
 
   HomeState copyWith({
@@ -60,6 +65,8 @@ class HomeState extends Equatable {
     DateTime? editingStartDate,
     ShiftType? editingShiftType,
     int? editingPredefinedIndex,
+    bool? patternChanged,
+    bool? firstWorkDayChanged,
   }) {
     return HomeState(
       status: status ?? this.status,
@@ -81,6 +88,8 @@ class HomeState extends Equatable {
       editingPredefinedIndex:
           editingPredefinedIndex ?? this.editingPredefinedIndex,
       editingShiftType: editingShiftType ?? this.editingShiftType,
+      patternChanged: patternChanged ?? this.patternChanged,
+      firstWorkDayChanged: firstWorkDayChanged ?? this.firstWorkDayChanged,
     );
   }
 
@@ -97,6 +106,8 @@ class HomeState extends Equatable {
   bool get isPredefinedEditing => editingShiftType == ShiftType.predefined;
 
   bool get isCustomEditing => editingShiftType == ShiftType.custom;
+
+  bool get canSave => patternChanged == true && firstWorkDayChanged == true;
 
   @override
   List<Object?> get props => [
@@ -117,5 +128,7 @@ class HomeState extends Equatable {
     editingStartDate,
     editingPredefinedIndex,
     editingShiftType,
+    patternChanged,
+    firstWorkDayChanged,
   ];
 }

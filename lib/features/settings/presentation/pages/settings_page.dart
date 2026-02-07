@@ -58,7 +58,7 @@ class SettingsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                     Text(
+                    Text(
                       AppLocalizations.of(context)!.update_pattern_text,
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
@@ -71,7 +71,9 @@ class SettingsPage extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       activeColor: AppColors.textPrimary,
                       title: Text(
-                        AppLocalizations.of(context)!.select_pattern_shift_predefined,
+                        AppLocalizations.of(
+                          context,
+                        )!.select_pattern_shift_predefined,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.textPrimary,
                         ),
@@ -95,7 +97,9 @@ class SettingsPage extends StatelessWidget {
                       visualDensity: VisualDensity.compact,
                       contentPadding: EdgeInsets.zero,
                       title: Text(
-                        AppLocalizations.of(context)!.select_pattern_shift_custom,
+                        AppLocalizations.of(
+                          context,
+                        )!.select_pattern_shift_custom,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.textPrimary,
                         ),
@@ -114,7 +118,7 @@ class SettingsPage extends StatelessWidget {
                       ),
                       child: Divider(),
                     ),
-                     Text(
+                    Text(
                       AppLocalizations.of(context)!.update_first_work_day,
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
@@ -127,6 +131,7 @@ class SettingsPage extends StatelessWidget {
                     SaveButtonWidget(
                       icon: AppAssets.save,
                       title: AppLocalizations.of(context)!.save_text,
+                      isDisabled: !state.canSave,
                       onTap: () async {
                         await cubit.confirmEditing();
                         QuickAlert.show(
@@ -134,9 +139,12 @@ class SettingsPage extends StatelessWidget {
                           type: QuickAlertType.success,
                           confirmBtnColor: AppColors.textPrimary,
                           confirmBtnText: AppLocalizations.of(context)!.agree,
-                          title: AppLocalizations.of(context)!.updated_success_title_dialog,
-                          text:
-                              AppLocalizations.of(context)!.updated_success_subtitle_dialog,
+                          title: AppLocalizations.of(
+                            context,
+                          )!.updated_success_title_dialog,
+                          text: AppLocalizations.of(
+                            context,
+                          )!.updated_success_subtitle_dialog,
                           textColor: AppColors.textSecondary,
                           borderRadius: 15,
                           animType: QuickAlertAnimType.slideInUp,
