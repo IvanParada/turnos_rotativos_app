@@ -8,10 +8,7 @@ import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dar
 import 'package:turnos_rotativos/l10n/app_localizations.dart';
 
 class WorkTodayWidget extends StatelessWidget {
-  const WorkTodayWidget({
-    super.key,
-    required this.state,
-  });
+  const WorkTodayWidget({super.key, required this.state});
 
   final HomeState state;
 
@@ -50,10 +47,9 @@ class WorkTodayWidget extends StatelessWidget {
                         Hgap(size.width * .02),
                         Text(
                           greetingByHour(context),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Colors.white),
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge!.copyWith(color: Colors.white),
                         ),
                       ],
                     ),
@@ -62,39 +58,35 @@ class WorkTodayWidget extends StatelessWidget {
                       state.todayType == ShiftDayType.work
                           ? AppLocalizations.of(context)!.today_work
                           : AppLocalizations.of(context)!.today_rest,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall!
-                          .copyWith(color: Colors.white),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineSmall!.copyWith(color: Colors.white),
                     ),
                     Vgap(size.height * 0.01),
-    
+
                     Text(
                       formatDate(DateTime.now(), context),
-                      style: Theme.of(context).textTheme.bodyLarge!
-                          .copyWith(color: Colors.white),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge!.copyWith(color: Colors.white),
                     ),
                     Vgap(size.height * 0.01),
-    
+
                     Row(
                       children: [
-                        SvgPicture.asset(
-                          AppAssets.clock,
-                          color: Colors.white,
-                        ),
+                        SvgPicture.asset(AppAssets.clock, color: Colors.white),
                         Hgap(10.0),
                         Text(
                           formatTime(DateTime.now()),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Colors.white),
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge!.copyWith(color: Colors.white),
                         ),
                       ],
                     ),
                   ],
                 ),
-    
+
                 Container(
                   padding: const EdgeInsets.all(30),
                   decoration: BoxDecoration(

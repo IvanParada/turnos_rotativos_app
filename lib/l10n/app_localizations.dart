@@ -382,13 +382,13 @@ abstract class AppLocalizations {
   /// No description provided for @today_work.
   ///
   /// In en, this message translates to:
-  /// **'Today you rest'**
+  /// **'Today you work'**
   String get today_work;
 
   /// No description provided for @today_rest.
   ///
   /// In en, this message translates to:
-  /// **'Today you work'**
+  /// **'Today you rest'**
   String get today_rest;
 
   /// No description provided for @today.

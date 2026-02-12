@@ -149,10 +149,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get updated_success_subtitle_dialog => 'Podrás actualizar tus datos cuando sea necesario.';
 
   @override
-  String get today_work => 'Hoy descansas';
+  String get today_work => 'Hoy trabajas';
 
   @override
-  String get today_rest => 'Hoy trabajas';
+  String get today_rest => 'Hoy descansas';
 
   @override
   String get today => 'Hoy';

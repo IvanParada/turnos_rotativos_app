@@ -46,8 +46,8 @@
   "save_text": "Simpan perubahan",
   "updated_success_title_dialog": "Berhasil diperbarui!",
   "updated_success_subtitle_dialog": "Anda dapat memperbarui data kapan pun diperlukan.",
-  "today_work": "Hari ini Anda beristirahat",
-  "today_rest": "Hari ini Anda bekerja",
+  "today_work": "Hari ini Anda bekerja",
+  "today_rest": "Hari ini Anda beristirahat",
   "today": "Hari ini",
   "days_count": "{count} hari",
   "pattern": "Pola"

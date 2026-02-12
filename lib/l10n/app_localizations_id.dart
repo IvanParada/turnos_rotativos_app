@@ -149,10 +149,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get updated_success_subtitle_dialog => 'Anda dapat memperbarui data kapan pun diperlukan.';
 
   @override
-  String get today_work => 'Hari ini Anda beristirahat';
+  String get today_work => 'Hari ini Anda bekerja';
 
   @override
-  String get today_rest => 'Hari ini Anda bekerja';
+  String get today_rest => 'Hari ini Anda beristirahat';
 
   @override
   String get today => 'Hari ini';

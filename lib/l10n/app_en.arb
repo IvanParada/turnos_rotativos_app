@@ -46,8 +46,8 @@
   "save_text": "Save changes",
   "updated_success_title_dialog": "Updated successfully!",
   "updated_success_subtitle_dialog": "You can update your data whenever necessary.",
-  "today_work": "Today you rest",
-  "today_rest": "Today you work",
+  "today_work": "Today you work",
+  "today_rest": "Today you rest",
   "today": "Today",
   "days_count": "{count} days",
   "pattern": "Pattern"

@@ -16,27 +16,44 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final cubit = context.read<HomeCubit>();
     final workController = TextEditingController();
     final restController = TextEditingController();
-    final size = MediaQuery.of(context).size;
 
     return BlocListener<HomeCubit, HomeState>(
-      listenWhen: (prev, curr) => !prev.isEditing && curr.isEditing,
+      listenWhen: (prev, curr) {
+        return (!prev.isEditing && curr.isEditing) ||
+            (prev.editingWorkDays != curr.editingWorkDays) ||
+            (prev.editingRestDays != curr.editingRestDays);
+      },
       listener: (context, state) {
-        workController.text = state.editingWorkDays?.toString() ?? '';
-        restController.text = state.editingRestDays?.toString() ?? '';
+        if (state.isEditing) {
+          final workStr = state.editingWorkDays?.toString() ?? '';
+          final restStr = state.editingRestDays?.toString() ?? '';
+
+          if (workController.text != workStr) workController.text = workStr;
+          if (restController.text != restStr) restController.text = restStr;
+        }
       },
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          final cubit = context.read<HomeCubit>();
+          if (state.editingShiftType == null && state.hasShift) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              cubit.startEditing();
+            });
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
 
           return Scaffold(
             backgroundColor: Colors.white,
-
             appBar: AppBar(
               centerTitle: true,
               title: Column(
                 children: [
+                  const SizedBox(height: 8),
                   Text(
                     AppLocalizations.of(context)!.settings,
                     style: Theme.of(context).textTheme.headlineSmall,
@@ -48,8 +65,9 @@ class SettingsPage extends StatelessWidget {
               surfaceTintColor: Colors.white,
             ),
             body: SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight + 16),
-
+              padding: const EdgeInsets.only(
+                bottom: kBottomNavigationBarHeight + 16,
+              ),
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: size.width * .05,
@@ -60,10 +78,11 @@ class SettingsPage extends StatelessWidget {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.update_pattern_text,
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 12),
 
+                    // FLUJO 1: PATRÓN PREDEFINIDO
                     RadioListTile<ShiftType>(
                       value: ShiftType.predefined,
                       groupValue: state.editingShiftType,
@@ -107,6 +126,7 @@ class SettingsPage extends StatelessWidget {
                       onChanged: (v) => cubit.updateEditingShiftType(v!),
                     ),
                     ShiftInputEditWidget(
+                      key: ValueKey('input_${state.editingShiftType}'),
                       isPredefined: state.isPredefinedEditing,
                       workController: workController,
                       restController: restController,
@@ -116,11 +136,11 @@ class SettingsPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                         vertical: size.height * .03,
                       ),
-                      child: Divider(),
+                      child: const Divider(),
                     ),
                     Text(
                       AppLocalizations.of(context)!.update_first_work_day,
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 12),
 
@@ -134,21 +154,23 @@ class SettingsPage extends StatelessWidget {
                       isDisabled: !state.canSave,
                       onTap: () async {
                         await cubit.confirmEditing();
-                        QuickAlert.show(
-                          context: context,
-                          type: QuickAlertType.success,
-                          confirmBtnColor: AppColors.textPrimary,
-                          confirmBtnText: AppLocalizations.of(context)!.agree,
-                          title: AppLocalizations.of(
-                            context,
-                          )!.updated_success_title_dialog,
-                          text: AppLocalizations.of(
-                            context,
-                          )!.updated_success_subtitle_dialog,
-                          textColor: AppColors.textSecondary,
-                          borderRadius: 15,
-                          animType: QuickAlertAnimType.slideInUp,
-                        );
+                        if (context.mounted) {
+                          QuickAlert.show(
+                            context: context,
+                            type: QuickAlertType.success,
+                            confirmBtnColor: AppColors.textPrimary,
+                            confirmBtnText: AppLocalizations.of(context)!.agree,
+                            title: AppLocalizations.of(
+                              context,
+                            )!.updated_success_title_dialog,
+                            text: AppLocalizations.of(
+                              context,
+                            )!.updated_success_subtitle_dialog,
+                            textColor: AppColors.textSecondary,
+                            borderRadius: 15,
+                            animType: QuickAlertAnimType.slideInUp,
+                          );
+                        }
                       },
                     ),
                   ],

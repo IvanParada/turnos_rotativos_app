@@ -24,7 +24,7 @@ class HomeState extends Equatable {
   final bool firstWorkDayChanged;
 
   const HomeState({
-    this.editingShiftType = ShiftType.predefined,
+    this.editingShiftType,
     this.editingPredefinedIndex,
     this.editingWorkDays,
     this.editingRestDays,
@@ -99,15 +99,13 @@ class HomeState extends Equatable {
   bool get hasShift =>
       workDays != null && restDays != null && startDate != null;
 
-  bool get isEditing =>
-      editingShiftType == ShiftType.predefined ||
-      editingShiftType == ShiftType.custom;
+  bool get isEditing => editingShiftType != null;
 
   bool get isPredefinedEditing => editingShiftType == ShiftType.predefined;
 
   bool get isCustomEditing => editingShiftType == ShiftType.custom;
 
-  bool get canSave => patternChanged == true && firstWorkDayChanged == true;
+  bool get canSave => patternChanged || firstWorkDayChanged;
 
   @override
   List<Object?> get props => [

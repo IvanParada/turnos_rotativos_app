@@ -44,13 +44,17 @@ class NextShiftType extends StatelessWidget {
                         : Colors.green.withOpacity(.1),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: SvgPicture.asset(
-                    AppAssets.briefcase,
-                    color: nextTypeShift == ShiftDayType.work
-                        ? Colors.orange
-                        : Colors.green,
-                    width: 20,
-                  ),
+                  child: nextTypeShift == ShiftDayType.work
+                      ? SvgPicture.asset(
+                          AppAssets.briefcase,
+                          color: Colors.orange,
+                          width: 20,
+                        )
+                      : SvgPicture.asset(
+                          AppAssets.coffe,
+                          color: Colors.green,
+                          width: 20,
+                        ),
                 ),
                 Hgap(10.0),
                 Expanded(

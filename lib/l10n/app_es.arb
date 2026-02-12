@@ -46,8 +46,8 @@
     "save_text": "Guardar Cambios",
     "updated_success_title_dialog": "¡Actualizado Exitosamente!",
     "updated_success_subtitle_dialog": "Podrás actualizar tus datos cuando sea necesario.",
-    "today_work": "Hoy descansas",
-    "today_rest": "Hoy trabajas",
+    "today_work": "Hoy trabajas",
+    "today_rest": "Hoy descansas",
     "today": "Hoy",
     "days_count": "{count} días",
     "pattern": "Turno"

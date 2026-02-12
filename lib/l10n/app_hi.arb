@@ -46,8 +46,8 @@
   "save_text": "परिवर्तन सहेजें",
   "updated_success_title_dialog": "सफलतापूर्वक अपडेट किया गया!",
   "updated_success_subtitle_dialog": "आप आवश्यक होने पर अपने डेटा को अपडेट कर सकते हैं।",
-  "today_work": "आज आप विश्राम करते हैं",
-  "today_rest": "आज आप काम करते हैं",
+  "today_work": "आज आप काम करते हैं",
+  "today_rest": "आज आप विश्राम करते हैं",
   "today": "आज",
   "days_count": "{count} दिन",
   "pattern": "पैटर्न"

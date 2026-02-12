@@ -94,11 +94,11 @@ class HomeCubit extends Cubit<HomeState> {
       a.year == b.year && a.month == b.month && a.day == b.day;
 
   void _recalcChangedFlags() {
+    final workChanged = state.editingWorkDays != state.workDays;
+    final restChanged = state.editingRestDays != state.restDays;
     final patternChanged =
-        state.editingWorkDays != null &&
-        state.editingRestDays != null &&
-        (state.editingWorkDays != state.workDays ||
-            state.editingRestDays != state.restDays);
+        (state.editingWorkDays != null && state.editingRestDays != null) &&
+        (workChanged || restChanged);
 
     final firstWorkDayChanged =
         state.editingStartDate != null &&
@@ -114,13 +114,17 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void startEditing() {
+    final predefinedIndex = _findPredefinedIndex(
+      state.workDays,
+      state.restDays,
+    );
+
     emit(
       state.copyWith(
-        editingShiftType: ShiftType.predefined,
-        editingPredefinedIndex: _findPredefinedIndex(
-          state.workDays,
-          state.restDays,
-        ),
+        editingShiftType: predefinedIndex != null
+            ? ShiftType.predefined
+            : ShiftType.custom,
+        editingPredefinedIndex: predefinedIndex,
         editingWorkDays: state.workDays,
         editingRestDays: state.restDays,
         editingStartDate: state.startDate,
@@ -199,7 +203,7 @@ class HomeCubit extends Cubit<HomeState> {
       startDate: state.editingStartDate!,
     );
 
-    emit(const HomeState());
     await loadShift();
+    startEditing();
   }
 }

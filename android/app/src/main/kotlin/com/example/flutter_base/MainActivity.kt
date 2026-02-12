@@ -1,4 +1,4 @@
-package com.nsqws.turnos_app
+package com.nsqws.turnos.app
 
 import io.flutter.embedding.android.FlutterActivity
 
