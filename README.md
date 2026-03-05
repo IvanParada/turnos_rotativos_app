@@ -6,6 +6,10 @@
 
 # Turnos App
 
+```
+https://play.google.com/store/apps/details?id=com.nsqws.turnos.app&hl=es_CL
+```
+
 Aplicación móvil desarrollada en **Flutter** para llevar el control de **turnos rotativos de trabajo** de manera simple, clara y visual.
 
 Está enfocada en personas que trabajan bajo esquemas como **10x5**, **14x14**, **7x7**, u otros patrones donde se trabajan *Y* días y se descansan *Z* días.
