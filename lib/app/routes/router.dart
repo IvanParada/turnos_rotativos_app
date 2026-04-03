@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turnos_rotativos/core/storage/onboarding_storage.dart';
@@ -10,6 +11,9 @@ final router = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: '/',
   debugLogDiagnostics: true,
+  observers: [
+    FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+  ],
   
   redirect: (context, state) {
     final completed = OnboardingStorage.completed;

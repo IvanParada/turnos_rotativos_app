@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:turnos_rotativos/core/constant/assets_constant.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
-import 'package:turnos_rotativos/features/calendar/presentation/pages/indicator_shift_type_widget.dart';
+import 'package:turnos_rotativos/features/calendar/presentation/widgets/indicator_shift_type_widget.dart';
 import 'package:turnos_rotativos/features/calendar/presentation/widgets/monthly_calendar_page.dart';
 import 'package:turnos_rotativos/features/home/presentation/cubit/home_cubit.dart';
 import 'package:turnos_rotativos/l10n/app_localizations.dart';

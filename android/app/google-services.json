@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "973978848025",
+    "project_id": "turnos-app-nsqws",
+    "storage_bucket": "turnos-app-nsqws.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973978848025:android:431fa0f0444b31f7851388",
+        "android_client_info": {
+          "package_name": "com.nsqws.turnos.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq0uDgmjQ8PA_Fq6HWLNa7djmLSVNgpkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turnos_rotativos/core/services/analytics_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turnos_rotativos/core/constant/color_constant.dart';
@@ -79,6 +80,9 @@ class OnboardingPage extends StatelessWidget {
           onNext: () async {
             await context.read<FirstStepCubit>().persistShift();
             await context.read<OnboardingCubit>().finishOnboarding();
+            if (context.mounted) {
+              await context.read<AnalyticsService>().logEvent('onboarding_completed');
+            }
           },
           onBack: () => context.read<OnboardingCubit>().previousStep(),
         );
